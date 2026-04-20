@@ -9,6 +9,7 @@ def create_player():
     player.color("black")
     player.shape("turtle")
 
+
 def up():
     global player
     player.setheading(90)
@@ -21,13 +22,15 @@ def down():
 
 def right():
     global player
-    player.setheading(0)
-    player.setx(player.xcor()+10)
+    player.right(10)
+    # player.setheading(0)
+    # player.setx(player.xcor()+10)
 
 def left():
     global player
-    player.setheading(180)
-    player.setx(player.xcor()-10)
+    player.left(10)
+    # player.setheading(180)
+    # player.setx(player.xcor()-10)
 
 def generate_color():
     return f"#{random.randint(0, 0xFFFFFF):06x}"
@@ -111,11 +114,14 @@ playing_area()
 player = None
 
 while alive:
+    if player!= None:
+        move_with_heading(player,turtles)
     for obj in turtles:
         turtles = move_with_heading(obj,turtles)
         if player != None and player.distance(obj) < 20:
             obj.hideturtle()
             turtles.remove(obj)
+        
 
     # deltax,deltay = move_with_deltas(yertle,deltax,deltay)
     # for turt in turtles:
